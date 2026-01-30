@@ -1,6 +1,6 @@
-# Name:
-# Student ID:
-# Email:
+# Name: Kayla Sirefman
+# Student ID: 97464763
+# Email: kaylasir@umich.edu
 # Who or what you worked with on this homework (including generative AI like ChatGPT):
 # If you worked with generative AI also add a statement for how you used it.
 # e.g.:
@@ -26,6 +26,10 @@ class CouponDispenser:
     """
 
     def __init__(self, coupon_cards):
+        self.coupon_cards = coupon_cards
+        self.costumer_roster = []
+        self.issued_indices = []
+
         """
         Initialize a new CouponDispenser object.
 
@@ -36,6 +40,7 @@ class CouponDispenser:
         pass
 
     def __str__(self):
+        return "|".join(self.coupon_cards)
         """
         Return a single string with all coupons in coupon_cards joined by pipes ('|').
         If coupon_cards is empty, return an empty string "".
@@ -47,6 +52,18 @@ class CouponDispenser:
         pass
 
     def issue_coupon(self, name):
+        if len(self.coupon_cards) == 0:
+            return "The box is empty"
+        if name in self.customer_roster:
+            i = self.costomer_roster
+            coupon_index = self.issued_indices[i]
+            coupon = self.coupon_cards[coupon_index]
+            return f"That name already has a coupon: {coupon}"
+        random_index = random.randrange(len(self.coupon_cards))
+        self.customer_roster.append(name)
+        self.issued_indices.append(random_index)
+        return self.coupon_cards[random_index]  
+
         """
         Assign name with a random coupon. If name is already assigned a coupon, return it.
         If the list coupon_cards is empty, return:
@@ -64,6 +81,16 @@ class CouponDispenser:
         pass
 
     def distribute_session(self):
+        round_number = 1
+
+        while True:
+            user_input = input(f"Round {round_number} - Enter a name (or a comma-separated list), or type 'show' or 'exit': ")
+            #exit
+            if user_input == "exit":
+                print("Goodbye!")
+                break 
+            #show
+            
         """
         Run the "coupon dispenser" session.
 
