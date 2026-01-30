@@ -37,7 +37,7 @@ class CouponDispenser:
             coupon_cards (list[str]): list of possible coupons users can receive.
         """
         # TODO: Implement per instructions
-        pass
+        pass 
 
     def __str__(self):
         return "|".join(self.coupon_cards)
@@ -90,7 +90,7 @@ class CouponDispenser:
                 print("Goodbye!")
                 break 
             #show
-            
+
         """
         Run the "coupon dispenser" session.
 
