@@ -90,6 +90,23 @@ class CouponDispenser:
                 print("Goodbye!")
                 break 
             #show
+            elif user_input == "show":
+                for i in range(len(self.customer_roster)):
+                    name = self.customer_roster[i]
+                    coupon_index = self.issued_indices[i]
+                    coupon = self.coupon_cards[coupon_index]
+                    print(f"{name}: {coupon}")
+            #names
+            else:
+                pieces = user_input.split(",")
+
+                for text in pieces:
+                    text_stripped = text.strip()
+                    if text_stripped != "":
+                        result = self.issue_coupon(text_stripped)
+                        print(result)
+            round_number += 1
+
 
         """
         Run the "coupon dispenser" session.
@@ -109,6 +126,20 @@ class CouponDispenser:
         pass
 
     def tally_distribution(self):
+        if len(self.issued_indices) == 0:
+            print("Empty")
+            return
+        counts = [0] * len(self.coupon_cards)
+        for index in self.issued_indices:
+            counts[index] += 1
+
+        for i in range(len(self.coupon_cards)):
+            coupon = self.coupon_cards[i]
+            count = counts[i]
+            print(f"{coupon} distribution count: {count}")
+
+
+
         """
         Extra credit:
         Print coupon distribution counts (NO sorting) using ONLY lists.
@@ -135,6 +166,7 @@ def main():
       - Start the interaction via distribute_session()
       - After exit, call tally_distribution() to print the distribution in the terminal
     """
+    
     coupon_cards = [
         "10% off",
         "Free small coffee",
@@ -142,10 +174,12 @@ def main():
         "Free extra espresso shot",
     ]
 
+
     # Uncomment the lines below as you implement each function.
-    # box = CouponDispenser(coupon_cards)
-    # box.distribute_session()
-    # box.tally_distribution()
+    box = CouponDispenser(coupon_cards)
+    box.distribute_session()
+    box.tally_distribution()
+    
     pass
 
 
@@ -426,5 +460,5 @@ def test():
 
 if __name__ == "__main__":
     main()
-    # test()
+    test()
 
