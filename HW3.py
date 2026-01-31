@@ -27,7 +27,7 @@ class CouponDispenser:
 
     def __init__(self, coupon_cards):
         self.coupon_cards = coupon_cards
-        self.costumer_roster = []
+        self.customer_roster = []
         self.issued_indices = []
 
         """
@@ -55,7 +55,7 @@ class CouponDispenser:
         if len(self.coupon_cards) == 0:
             return "The box is empty"
         if name in self.customer_roster:
-            i = self.costomer_roster
+            i = self.customer_roster.index(name)
             coupon_index = self.issued_indices[i]
             coupon = self.coupon_cards[coupon_index]
             return f"That name already has a coupon: {coupon}"
@@ -136,7 +136,7 @@ class CouponDispenser:
         for i in range(len(self.coupon_cards)):
             coupon = self.coupon_cards[i]
             count = counts[i]
-            print(f"{coupon} distribution count: {count}")
+            print(f"{coupon} distribution count: {count}.")
 
 
 
